@@ -9,9 +9,9 @@ try:
 except Exception:
     threshold_otsu = None
 
-ROOT = Path('/mnt/data')
-OUT = ROOT / 'sky_prediction_v7_1km_cloud_field'
-(OUT/'outputs'/'overlays').mkdir(parents=True, exist_ok=True)
+#ROOT = Path('/mnt/data')
+#OUT = ROOT / 'sky_prediction_v7_1km_cloud_field'
+#(OUT/'outputs'/'overlays').mkdir(parents=True, exist_ok=True)
 
 DEFAULT_LAT = 27.54225
 DEFAULT_LON = 72.471
