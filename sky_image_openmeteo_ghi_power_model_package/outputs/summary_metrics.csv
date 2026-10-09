@@ -1,0 +1,7 @@
+section,target,unit,matched_count,mae,rmse,bias_actual_minus_predicted,average_accuracy_percent,accuracy_count
+image_time_current,ghi,W/m2,1,20.169,20.169,-20.169,75.989,1
+image_time_current,power,kW,1,13435.224,13435.224,-13435.224,58.117,1
+latest_image_2hr_future,ghi,W/m2,8,14.386,16.489,-0.157,94.22,8
+latest_image_2hr_future,power,kW,8,18082.92,21691.326,13802.858,87.965,8
+rolling_image_t_plus_15,ghi,W/m2,1,21.799,21.799,-21.799,83.359,1
+rolling_image_t_plus_15,power,kW,1,11008.403,11008.403,-11008.403,79.675,1

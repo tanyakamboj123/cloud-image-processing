@@ -1,0 +1,20 @@
+{
+  "lat": 27.54225,
+  "lon": 72.471,
+  "timezone": "Asia/Kolkata",
+  "panel_tilt_deg": 25.0,
+  "panel_azimuth_deg": 180.0,
+  "albedo": 0.2,
+  "plant_dc_capacity_kw": 435000.0,
+  "temp_coeff_per_c": -0.004,
+  "loss_factor": 0.82,
+  "forecast_horizon_hours": 2.0,
+  "forecast_interval_min": 15,
+  "use_openmeteo": true,
+  "use_manual_openmeteo": true,
+  "video_frame_interval_seconds": 60.0,
+  "video_start_times": {
+    "WhatsApp Video 2026-10-07 at 7.18.44 AM.mp4": "2026-10-07 07:18:44"
+  },
+  "image_timestamps": {}
+}

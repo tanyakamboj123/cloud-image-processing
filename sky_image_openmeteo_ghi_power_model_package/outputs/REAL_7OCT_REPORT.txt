@@ -1,0 +1,34 @@
+7 OCTOBER REAL-INPUT RUN
+Recording start confirmed by user: 2026-10-07 07:18:44 Asia/Kolkata.
+Video duration 16.298 seconds; default 60-second extraction uses first frame.
+258 actual GHI rows and 257 B01-INV01 DC power rows loaded.
+Live Open-Meteo returned 24 hourly rows. Perez used for all 10 predictions.
+All prediction times matched actuals within the configured 8-minute tolerance.
+
+Actual DC power: use the explicitly supplied DC Power (kW) column.
+Additional check: calculated_dc_power_kw = DC Voltage (V) * DC Current (A) / 1000.
+Products of separately averaged voltage/current need not equal reported mean power.
+The data file does not establish the precise reason for any discrepancy.
+Power data represents B01-INV01, not the whole plant.
+
+POWER MODEL LIMITATION
+Capacity remains unset. The existing prior-power fallback estimated 258.774 kW
+from mostly nighttime/early-morning values. This is not a valid nameplate estimate
+for this run and substantially underpredicts power. Do not interpret these power
+predictions as a validated inverter forecast. The measured and V*I powers remain
+usable comparisons. No future measured power was used to fit predictions.
+Tilt remains 25 degrees, azimuth 180 degrees, loss factor 0.82, gamma -0.004/C.
+
+GHI RESULTS
+Current: 104.169 predicted vs 84 actual W/m2 (nearest measurement 07:20).
+Rolling +15: 152.799 predicted vs 131 actual W/m2 (nearest measurement 07:35).
+Eight future horizons: MAE 14.386 W/m2, RMSE 16.489 W/m2.
+This is one short video and retrieved weather, not a broad operational validation.
+
+See summary_metrics.csv for all metrics; power_calculated_vs_predicted_7oct.csv
+for forecast-time V*I comparison; dc_voltage_current_power_check.csv for all
+257 measured rows. run_7oct.log records the full model run.
+
+Run again:
+cd C:\codex\sky_image_openmeteo_ghi_power_model_package
+.\.venv\Scripts\python.exe run_ghi_power_forecast.py

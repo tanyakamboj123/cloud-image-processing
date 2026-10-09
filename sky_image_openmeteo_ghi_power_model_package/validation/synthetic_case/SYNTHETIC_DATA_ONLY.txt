@@ -1,0 +1,1 @@
+Generated fixtures for software validation only. Images, GHI and power measurements are artificial. Metrics do not measure plant forecast accuracy. Video sampled every 1 second during validation.

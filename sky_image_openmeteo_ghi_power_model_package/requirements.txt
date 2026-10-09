@@ -1,0 +1,13 @@
+numpy
+pandas>=2.0
+matplotlib
+pillow
+scikit-image
+opencv-python-headless
+openpyxl
+xlrd>=2.0.1
+requests
+pvlib
+tzdata
+streamlit>=1.65
+plotly

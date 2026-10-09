@@ -1,0 +1,36 @@
+7 OCTOBER — 435 MW DC PLANT RUN
+
+Confirmed nameplate DC capacity: 435000 kW.
+Input: ADHOC_7oct_875__2026-10-07T22_50__manish.uppal@zelestra.energy.csv.
+76 matched inverter voltage/current pairs, B01 through B38, INV01 and INV02.
+No direct total DC power column: measured plant reference is SUM(V_i * I_i / 1000).
+This is a calculated total from measured electrical readings, not a separately
+metered plant DC power value. Comparison assumes these 76 inverters cover the
+435 MW plant identified by the user.
+
+Coverage: 288 timestamps, 197 complete timestamps. Partial readings are not
+used as full-plant actual power. All 10 forecast rows matched complete readings.
+See inverter_coverage_audit.csv for counts and clearly labelled partial sums.
+
+Video start: 07:18:44 IST, confirmed earlier by user. One frame at default sampling.
+Current prediction: 45.514 MW; measured V/I total at 07:20: 32.078 MW.
++15 minute prediction: 65.170 MW; measured V/I total at 07:35: 54.162 MW.
+Eight future forecasts: power MAE 18.083 MW, RMSE 21.691 MW.
+Mean clipped per-row power accuracy: 87.965 percent (8 samples only).
+GHI future MAE: 14.386 W/m2; RMSE 16.489 W/m2.
+
+Power now uses configured capacity, not the early-morning capacity estimate.
+Automatic power calibration disabled to retain the confirmed physical capacity.
+Tilt 25 degrees, azimuth 180 degrees, albedo 0.2, loss factor 0.82 and temperature
+coefficient -0.004/C remain assumptions. Perez transposition and live weather used.
+A single short video and retrieved weather are not a broad operational backtest.
+
+Updated config.json and active inputs/power for plant runs. Prior single-inverter
+input preserved in validation/single_inverter_inputs. Prior outputs were preserved;
+use outputs/plant_435mw for this latest whole-plant run.
+
+Run:
+.\.venv\Scripts\python.exe run_ghi_power_forecast.py --output-dir outputs\plant_435mw
+
+Main files: plant_comparison_mw.csv, power_comparison_table.csv,
+combined_ghi_power_table.csv, summary_metrics.csv, inverter_coverage_audit.csv.

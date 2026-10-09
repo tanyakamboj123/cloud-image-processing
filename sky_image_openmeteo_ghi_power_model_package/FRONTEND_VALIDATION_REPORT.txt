@@ -1,0 +1,74 @@
+STREAMLIT FRONTEND VALIDATION — 7 OCTOBER 2026
+
+Created:
+- app.py: seven-tab Streamlit frontend with configuration sidebar and Plotly charts.
+- dashboard_support.py: upload snapshots, scoped cleanup and ZIP generation.
+- .streamlit/config.toml: native light theme, localhost binding, 500 MB upload limit.
+- test_dashboard.py: callable API and dashboard regression tests.
+- validation/dashboard_power.jpg: browser screenshot of the live power chart.
+
+Updated:
+- run_ghi_power_forecast.py: callable run_forecast API with isolated settings,
+  output-path tracking, captured warnings and status. CLI preserved.
+- requirements.txt: Streamlit >=1.65 and Plotly added.
+- test_forecast.py: test configuration made independent of plant configuration.
+- README.md: startup, input handling, outputs and operation instructions.
+
+Checks:
+PASS 19 backend/dashboard regression tests (validation_dashboard.log).
+PASS Python module compilation and pip dependency check.
+PASS CLI run from project root with supplied 7 October files: 10 output rows.
+PASS live Open-Meteo, both CLI and actual browser-triggered dashboard run.
+PASS genuine Perez, labelled per row as weather DNI/DHI or estimated DNI/DHI.
+PASS manual CSV/JSON fallback, missing weather, missing inputs and timestamp checks.
+PASS CSV/XLSX reads, DC units/pair detection, matched values, metrics and locked-file
+     fallback simulation. XLS engine installed; real sample validation uses CSV/XLSX.
+PASS upload/save through the actual browser GHI upload widget; saved bytes match source.
+PASS synthetic upload path/duplicate protection and session isolation tests.
+PASS 7 tabs, 4 chart components and section filtering through Streamlit AppTest.
+PASS power chart visibly rendered in the browser after live forecast execution.
+PASS browser ZIP download: C:\Users\TanyaKamboj\Downloads\solar_forecast_outputs.zip
+     Archive CRC check passed; 12 entries, all five required output CSVs included.
+PASS clearing outputs only affects the current dashboard session; original plant
+     reports retained. Dashboard snapshots are excluded from CLI scans.
+
+Backend method:
+Existing adaptive cloud-image model unchanged. GHI image/weather fusion unchanged.
+Dashboard power uses user-entered capacity and physical temperature/loss equation;
+it does not calibrate or infer capacity from early-morning power. CLI retains its
+configuration. Main CSVs now expose the per-row GTI method.
+
+Inputs:
+inputs/images/_dashboard/<session>/<dataset>/
+inputs/ghi/_dashboard/<session>/<dataset>/
+inputs/power/_dashboard/<session>/<dataset>/
+inputs/openmeteo/_dashboard/<session>/<dataset>/
+Snapshots avoid mixing measurements or overwriting original user files.
+
+Outputs:
+CLI: outputs/<filename>.csv
+Dashboard: outputs/dashboard/<session>/<run>/<filename>.csv
+The Downloads tab uses actual returned paths, including unique names if Excel locks
+an output. ZIP also includes run.log, run_config.json and extracted frames.
+
+Assumptions still used:
+435000 kW DC covers the 76 inverter pairs in the supplied plant data.
+Measured plant power is SUM(V_i * I_i / 1000), not a separately reported plant meter.
+Only complete inverter totals are used as actuals.
+Tilt 25 degrees, azimuth 180 degrees, albedo 0.2, loss factor 0.82, gamma -0.004/C.
+Video start 07:18:44 IST; one frame at 60-second sampling for the 16.3-second clip.
+Hourly weather interpolation and cell-temperature estimation are approximate.
+Confidence labels and clipped accuracy percentages are not calibrated probabilities.
+One short video is not a multi-day out-of-sample forecast validation.
+
+Start app (PowerShell):
+cd C:\codex\sky_image_openmeteo_ghi_power_model_package
+.\.venv\Scripts\python.exe -m streamlit run app.py
+
+Direct backend:
+.\.venv\Scripts\python.exe run_ghi_power_forecast.py
+
+Tests:
+.\.venv\Scripts\python.exe -m unittest test_forecast test_dashboard -v
+
+App currently running: http://127.0.0.1:8501

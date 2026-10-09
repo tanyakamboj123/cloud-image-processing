@@ -1,0 +1,118 @@
+SOLAR FORECAST PACKAGE REVIEW — 7 OCTOBER 2026
+
+Project: C:\codex\sky_image_openmeteo_ghi_power_model_package
+
+RESULT
+16 regression tests passed. All original Python modules imported successfully in
+.venv (Python 3.14.5); compileall passed; pip check reported no broken requirements.
+A complete CLI run launched from C:\codex succeeded with synthetic media and plant
+measurements plus live Open-Meteo weather. Real plant validation remains unavailable:
+the package inputs contained only .gitkeep files, not the requested 7 October video,
+ADHOC_7oct_ghi_*.csv or ADHOC_7oct_power_*.csv.
+
+WHAT WAS WORKING
+- Bundled adaptive V5.3 image analysis, sun-path correction and visual-okta modules.
+- Project-relative paths and basic WhatsApp image timestamp parsing.
+- Existing current-image, rolling +15 minute and latest-image +2 hour row generation.
+- Basic CSV/XLSX loading, comparison formulas and image/weather CSI fusion.
+- Existing physical capacity/temperature/loss and median-calibration approaches.
+The three files in cloud_model were not changed.
+
+WHAT WAS BROKEN / WHAT CHANGED
+- Missing OpenCV and other runtime packages: installed a project-local .venv.
+- Added xlrd for XLS and tzdata for Windows timezone support to requirements.
+  Removed unused Streamlit/joblib requirements; this package is a command-line model.
+- No video path: now extracts timestamped frames; recording-start overrides support
+  arbitrary video names. Image timestamp overrides support arbitrary image names.
+- No manual weather fallback: now live-first, then CSV/JSON, then warned image/clear-sky.
+- Recent past dates went straight to delayed archive: recent dates now use forecast API.
+- Wind was labelled m/s without requesting m/s: corrected request and manual conversions.
+- Added relative humidity; retained cloud layers, direct horizontal radiation, DNI/DHI.
+- Weather interpolation previously extrapolated stale endpoints and was vulnerable to
+  mixed datetime resolutions: normalized nanosecond time axes, bounded interpolation.
+- No-weather POA path used a scalar where a Series was needed: corrected missing columns.
+- Perez omitted dni_extra and fell back to isotropic: now supplies extraterrestrial
+  irradiance and airmass. Tested genuine Perez output and zero nighttime output.
+- Weather irradiance scaling could violate GHI = DNI*cos(zenith)+DHI: corrected closure.
+- Forecast caps could change current image CSI: restricted those caps to future horizons.
+- Same-time images could be dropped: image identity now participates in deduplication.
+- Nearest measurement matches could lose original row order/index: fixed alignment.
+- Offset timestamps discarded zones without conversion: now convert to local site time.
+- Added mixed/ISO/day-first timestamps and split Date/Time columns.
+- AC power could be relabelled DC, and the letter 'w' in 'Power' meant watts: fixed.
+- V/I pairing used sorted lists rather than IDs: match identifiers and reject incomplete
+  pairs. Fixed a test-discovered false current match on the word 'timestamp'.
+- Direct DC power, explicit totals, device sums and MW/kW/W conversion are supported.
+  Print detected columns and conversion factors. Keep fleet voltage/current blank.
+- Calibration and capacity inference used future targets: now use strictly prior data
+  per forecast origin, with three distinct observations needed for calibration.
+- Missing folder creation, requested table columns and summary metrics: implemented.
+- Repeated Excel-lock fallback could overwrite _new: now uses unique suffixes.
+
+LIVE OPEN-METEO
+Confirmed locally: HTTP request succeeded and returned 24 hourly rows for 7 October
+2026 at latitude 27.54225, longitude 72.471. The full CLI live-weather run succeeded.
+Evidence: validation_weather.log, validation_cli_live.log and
+outputs/openmeteo_live_check.csv.
+Forced download failure with manual CSV/JSON fallback also passed regression tests.
+No-weather full pipeline passed separately.
+
+ACTUAL POWER DETECTION
+Confirmed using synthetic files: 500 V x 10 A / 1000 = 5 kW; two string pairs sum to
+0.8 kW; explicit DC power is preferred over V/I; AC power is rejected. CSV/XLSX and
+unit conversions were exercised. No real plant power file was available, so real-file
+column detection and units are not yet verified. XLS support is installed but the
+end-to-end sample used XLSX. Excel locking was simulated, not tested in an open Excel UI.
+
+OUTPUT LOCATIONS
+Real-input runs write to:
+C:\codex\sky_image_openmeteo_ghi_power_model_package\outputs\
+  ghi_comparison_table.csv
+  power_comparison_table.csv
+  combined_ghi_power_table.csv
+  image_feature_table.csv
+  summary_metrics.csv
+  all_internal_predictions_with_features.csv
+These plant comparison files have not been generated because real images are absent.
+The public weather connectivity-check CSV is already present there.
+
+Completed artificial-data run outputs:
+C:\codex\sky_image_openmeteo_ghi_power_model_package\validation\synthetic_case\outputs\
+  3 current + 3 rolling + 8 future = 14 rows; all GHI/power actuals matched.
+  6 summary rows (3 sections x 2 targets). Includes extracted video frames.
+
+Completed live-weather/artificial-data CLI outputs:
+C:\codex\sky_image_openmeteo_ghi_power_model_package\validation\live_weather_outputs\
+  1 current + 1 rolling + 8 future = 10 rows at the default 60-second video sampling.
+All example comparison/summary files are available in those two directories.
+Artificial-data accuracy values do not measure real forecasting performance.
+
+ASSUMPTIONS / LIMITATIONS
+- Tilt 25 degrees; azimuth 180 degrees (south); albedo 0.2.
+- Capacity unset. Without prior calibration/history, 1000 kW is explicitly marked as a
+  placeholder. Prior-power capacity estimates are also labelled as estimates.
+- Temperature coefficient -0.004/C; default multiplicative loss factor 0.82.
+- Site timezone Asia/Kolkata; image-core UTC offset 5.5 hours.
+- Confirm WhatsApp recording time; filename time can be share time. Video elapsed time
+  assumes ordinary constant-frame-rate footage, not time-lapse.
+- Nearest actual matching tolerance 8 minutes. Dates day-first unless ISO/explicit.
+- Unlabelled power magnitude guesses can be wrong; set power_unit or label units.
+  V/I input values are assumed volts and amperes. GHI inputs must be global horizontal.
+- Sky/future CSI, temperature and confidence are heuristic, not trained probabilistic
+  forecasts. Image rules are retained. Cloud/humidity features are exported but no
+  additional learned fusion method was added.
+- Open-Meteo hourly radiation is a preceding-hour average, interpolated approximately.
+  Retrieved/reanalysis historical weather is not a strict as-issued forecast backtest.
+- Inputs/models is scanned but reserved; arbitrary serialized models are not loaded.
+- Error/bias = actual minus prediction. MAE/RMSE use matched pairs. Accuracy is clipped
+  to 0–100 and omitted at actual GHI <=50 W/m2 or power <=1 kW. Sample counts are given.
+
+COMMANDS (PowerShell)
+cd C:\codex\sky_image_openmeteo_ghi_power_model_package
+.\.venv\Scripts\python.exe run_ghi_power_forecast.py
+.\.venv\Scripts\python.exe -m unittest test_forecast -v
+.\.venv\Scripts\python.exe -m pip check
+
+Add real files to inputs/images, inputs/ghi and inputs/power; edit config.json with
+confirmed plant settings before interpreting power predictions. README.md documents
+installation, timestamp overrides, manual weather, units, offline mode and all outputs.

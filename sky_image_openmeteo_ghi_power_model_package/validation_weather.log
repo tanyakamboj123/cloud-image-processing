@@ -1,0 +1,3 @@
+Live Open-Meteo OK: 24 rows from https://api.open-meteo.com/v1/forecast
+Note: hourly radiation is a preceding-hour mean; interpolating it to image times is approximate.
+Live result rows: 24

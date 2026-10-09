@@ -1,0 +1,88 @@
+test_current_csi_preserved_for_blocking_sky (test_forecast.ForecastTests.test_current_csi_preserved_for_blocking_sky) ... ok
+test_ghi_excel_units_and_split_timestamp (test_forecast.ForecastTests.test_ghi_excel_units_and_split_timestamp) ... ok
+test_locked_csv_returns_unique_path (test_forecast.ForecastTests.test_locked_csv_returns_unique_path) ... ok
+test_manual_weather_json_csv_fallback (test_forecast.ForecastTests.test_manual_weather_json_csv_fallback) ... ok
+test_metrics_and_missing_values (test_forecast.ForecastTests.test_metrics_and_missing_values) ... ok
+test_missing_input_folders_created (test_forecast.ForecastTests.test_missing_input_folders_created) ... ok
+test_nearest_order_index_tolerance (test_forecast.ForecastTests.test_nearest_order_index_tolerance) ... ok
+test_no_future_power_leakage (test_forecast.ForecastTests.test_no_future_power_leakage) ... ok
+test_perez_no_weather_and_night (test_forecast.ForecastTests.test_perez_no_weather_and_night) ... ok
+test_perez_weather_components_preserve_ghi (test_forecast.ForecastTests.test_perez_weather_components_preserve_ghi) ... ok
+test_power_loading_excel_csv_and_ac_rejection (test_forecast.ForecastTests.test_power_loading_excel_csv_and_ac_rejection) ... ok
+test_power_units_and_pairs (test_forecast.ForecastTests.test_power_units_and_pairs) ... ok
+test_same_timestamp_images_are_both_predicted (test_forecast.ForecastTests.test_same_timestamp_images_are_both_predicted) ... ok
+test_video_and_end_to_end_without_weather (test_forecast.ForecastTests.test_video_and_end_to_end_without_weather) ... ok
+test_weather_interpolation_does_not_extrapolate (test_forecast.ForecastTests.test_weather_interpolation_does_not_extrapolate) ... ok
+test_whatsapp_and_timezone (test_forecast.ForecastTests.test_whatsapp_and_timezone) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 5.334s
+
+OK
+File was open/locked. Saved as: C:\codex\sky_image_openmeteo_ghi_power_model_package\tmpretjjuga\locked_b04e6433f5.csv
+File was open/locked. Saved as: C:\codex\sky_image_openmeteo_ghi_power_model_package\tmpretjjuga\locked_c4f0637f18.csv
+Warning: Open-Meteo download failed: synthetic offline test
+Manual Open-Meteo: anything.json, 2 rows
+Manual Open-Meteo: download.csv, 2 rows
+Site: 27.54225, 72.471, Asia/Kolkata; tilt=25.0, azimuth=180.0, albedo=0.2
+Capacity=435000 kW; loss factor=0.82; temperature coefficient=-0.004/C
+Power file arbitrary.xlsx: 1 valid rows; sum_vdc_times_idc:String 1 DC Voltage * String 1 DC Current / 1000;String 2 DC Voltage * String 2 DC Current / 1000
+Power file arbitrary.xlsx: 1 valid rows; sum_vdc_times_idc:String 1 DC Voltage * String 1 DC Current / 1000;String 2 DC Voltage * String 2 DC Current / 1000
+Power conversion: Total DC Power (kW): kw -> kW, multiplier 1
+Power file other.CSV: 1 valid rows; power_columns:Total DC Power (kW)
+Skipping power file ac.csv: No explicit DC power or matched V/I columns (AC power is not DC power)
+Power file arbitrary.xlsx: 1 valid rows; sum_vdc_times_idc:String 1 DC Voltage * String 1 DC Current / 1000;String 2 DC Voltage * String 2 DC Current / 1000
+Power conversion: Total DC Power (kW): kw -> kW, multiplier 1
+Power file other.CSV: 1 valid rows; power_columns:Total DC Power (kW)
+Power conversion: DC Power (W): w -> kW, multiplier 0.001
+Power conversion: DC Power (kW): kw -> kW, multiplier 1
+Power conversion: Power DC (MW): mw -> kW, multiplier 1000
+Site: 27.54225, 72.471, Asia/Kolkata; tilt=25.0, azimuth=180.0, albedo=0.2
+Capacity=435000 kW; loss factor=0.82; temperature coefficient=-0.004/C
+Warning: WhatsApp Video 2026-10-07 at 7.18.44 AM.mp4: assuming filename timestamp is recording start, not share time.
+Video WhatsApp Video 2026-10-07 at 7.18.44 AM.mp4: extracted 3 frames at approximately 1-second intervals
+Power file measured.xlsx: 150 valid rows; sum_vdc_times_idc:Vdc * Idc / 1000
+Loaded actual GHI: 150 rows
+Loaded actual DC power: 150 rows
+Live Open-Meteo disabled/unavailable; checking manual files.
+Warning: no usable Open-Meteo data; using sky images + clear-sky fallback.
+
+Done.
+Outputs:
+ - C:\codex\sky_image_openmeteo_ghi_power_model_package\tmp26nizbe5\outputs\ghi_comparison_table.csv
+ - C:\codex\sky_image_openmeteo_ghi_power_model_package\tmp26nizbe5\outputs\power_comparison_table.csv
+ - C:\codex\sky_image_openmeteo_ghi_power_model_package\tmp26nizbe5\outputs\combined_ghi_power_table.csv
+ - C:\codex\sky_image_openmeteo_ghi_power_model_package\tmp26nizbe5\outputs\image_feature_table.csv
+ - C:\codex\sky_image_openmeteo_ghi_power_model_package\tmp26nizbe5\outputs\summary_metrics.csv
+
+Created rows by section:
+section
+latest_image_2hr_future    8
+image_time_current         3
+rolling_image_t_plus_15    3
+
+Preview:
+                section       forecast_time  predicted_ghi_wm2  predicted_dc_power_kw forecast_confidence
+     image_time_current 2026-10-07 07:18:44            110.429              54521.461             current
+     image_time_current 2026-10-07 07:18:45            110.491              54547.567             current
+     image_time_current 2026-10-07 07:18:46            110.554              54573.671             current
+rolling_image_t_plus_15 2026-10-07 07:33:44            166.159              77237.309                high
+rolling_image_t_plus_15 2026-10-07 07:33:45            166.222              77262.363                high
+latest_image_2hr_future 2026-10-07 07:33:46            166.285              77287.415                high
+rolling_image_t_plus_15 2026-10-07 07:33:46            166.285              77287.415                high
+latest_image_2hr_future 2026-10-07 07:48:46            220.831              98696.281                high
+latest_image_2hr_future 2026-10-07 08:03:46            274.044             119027.068              medium
+latest_image_2hr_future 2026-10-07 08:18:46            325.621             138823.657              medium
+latest_image_2hr_future 2026-10-07 08:33:46            375.568             157227.188              medium
+latest_image_2hr_future 2026-10-07 08:48:46            424.813             175075.452                 low
+latest_image_2hr_future 2026-10-07 09:03:46            471.896             191848.256                 low
+latest_image_2hr_future 2026-10-07 09:18:46            516.592             207513.363                 low
+
+Metrics (blank means no matched actual measurements):
+                section target unit  matched_count        mae       rmse  bias_actual_minus_predicted  average_accuracy_percent  accuracy_count
+     image_time_current    ghi W/m2              3     89.509     89.509                       89.509                    55.246               3
+     image_time_current  power   kW              3  54542.566  54542.570                   -54542.566                     0.000               3
+rolling_image_t_plus_15    ghi W/m2              3     33.778     33.778                       33.778                    83.111               3
+rolling_image_t_plus_15  power   kW              3  77257.363  77257.365                   -77257.363                     0.000               3
+latest_image_2hr_future    ghi W/m2              8    155.385    186.533                     -146.956                    35.639               8
+latest_image_2hr_future  power   kW              8 145682.335 151814.627                  -145682.335                     0.000               8

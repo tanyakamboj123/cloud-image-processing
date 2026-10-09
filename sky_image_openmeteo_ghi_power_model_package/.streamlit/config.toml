@@ -1,0 +1,45 @@
+# Solarized Light Theme for Streamlit
+# Precision colors designed for readability and reduced eye strain
+[theme]
+base = "light"
+primaryColor = "#137e85"
+backgroundColor = "#fcfbf7"
+secondaryBackgroundColor = "#f0efe8"
+codeBackgroundColor = "#f0efe8"
+textColor = "#263d43"
+linkColor = "#137e85"
+borderColor = "#d8e1df"
+showWidgetBorder = true
+showSidebarBorder = true
+baseRadius = "4px"
+buttonRadius = "4px"
+codeFontSize = "0.875rem"
+codeTextColor = "#586e75"
+baseFontSize = 14
+baseFontWeight = 400
+headingFontSizes = ["32px", "24px", "20px", "16px", "14px", "12px"]
+headingFontWeights = [600, 600, 600, 600, 600, 600]
+linkUnderline = false
+chartCategoricalColors = ["#137e85", "#2aa198", "#859900", "#b58900", "#cb4b16", "#dc322f", "#d33682"]
+
+# Solarized color palette
+blueColor = "#137e85"
+greenColor = "#859900"
+yellowColor = "#b58900"
+orangeColor = "#cb4b16"
+redColor = "#dc322f"
+violetColor = "#6c71c4"
+
+[theme.sidebar]
+backgroundColor = "#f0efe8"
+secondaryBackgroundColor = "#fcfbf7"
+codeBackgroundColor = "#fcfbf7"
+borderColor = "#d8e1df"
+
+[server]
+headless = true
+address = "127.0.0.1"
+maxUploadSize = 500
+
+[browser]
+gatherUsageStats = false

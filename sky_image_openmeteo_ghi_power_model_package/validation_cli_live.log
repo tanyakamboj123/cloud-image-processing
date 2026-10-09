@@ -1,0 +1,46 @@
+Site: 27.54225, 72.471, Asia/Kolkata; tilt=25.0, azimuth=180.0, albedo=0.2
+Capacity=None kW; loss factor=0.82; temperature coefficient=-0.004/C
+Warning: WhatsApp Video 2026-10-07 at 7.18.44 AM.mp4: assuming filename timestamp is recording start, not share time.
+Video WhatsApp Video 2026-10-07 at 7.18.44 AM.mp4: extracted 1 frames at approximately 60-second intervals
+Power file measured.xlsx: 150 valid rows; sum_vdc_times_idc:Vdc * Idc / 1000
+Loaded actual GHI: 150 rows
+Loaded actual DC power: 150 rows
+Live Open-Meteo OK: 24 rows from https://api.open-meteo.com/v1/forecast
+Note: hourly radiation is a preceding-hour mean; interpolating it to image times is approximate.
+Warning: no prior calibration/capacity; using PLACEHOLDER 1000 kW DC. Set dc_capacity_kw.
+
+Done.
+Outputs:
+ - C:\codex\sky_image_openmeteo_ghi_power_model_package\validation\live_weather_outputs\ghi_comparison_table.csv
+ - C:\codex\sky_image_openmeteo_ghi_power_model_package\validation\live_weather_outputs\power_comparison_table.csv
+ - C:\codex\sky_image_openmeteo_ghi_power_model_package\validation\live_weather_outputs\combined_ghi_power_table.csv
+ - C:\codex\sky_image_openmeteo_ghi_power_model_package\validation\live_weather_outputs\image_feature_table.csv
+ - C:\codex\sky_image_openmeteo_ghi_power_model_package\validation\live_weather_outputs\summary_metrics.csv
+
+Created rows by section:
+section
+latest_image_2hr_future    8
+image_time_current         1
+rolling_image_t_plus_15    1
+
+Preview:
+                section       forecast_time  predicted_ghi_wm2  predicted_dc_power_kw forecast_confidence
+     image_time_current 2026-10-07 07:18:44            108.117                108.301             current
+latest_image_2hr_future 2026-10-07 07:33:44            157.010                153.661                high
+rolling_image_t_plus_15 2026-10-07 07:33:44            157.010                153.661                high
+latest_image_2hr_future 2026-10-07 07:48:44            205.971                198.114                high
+latest_image_2hr_future 2026-10-07 08:03:44            253.977                240.732              medium
+latest_image_2hr_future 2026-10-07 08:18:44            303.380                283.595              medium
+latest_image_2hr_future 2026-10-07 08:33:44            352.017                324.746              medium
+latest_image_2hr_future 2026-10-07 08:48:44            400.523                364.772                 low
+latest_image_2hr_future 2026-10-07 09:03:44            447.557                405.403                 low
+latest_image_2hr_future 2026-10-07 09:18:44            491.765                440.637                 low
+
+Metrics (blank means no matched actual measurements):
+                section target unit  matched_count     mae    rmse  bias_actual_minus_predicted  average_accuracy_percent  accuracy_count
+     image_time_current    ghi W/m2              1  91.883  91.883                       91.883                    54.058               1
+     image_time_current  power   kW              1 103.301 103.301                     -103.301                     0.000               1
+latest_image_2hr_future    ghi W/m2              8 137.273 167.785                     -126.525                    40.104               8
+latest_image_2hr_future  power   kW              8 296.457 311.118                     -296.457                     0.000               8
+rolling_image_t_plus_15    ghi W/m2              1  42.990  42.990                       42.990                    78.505               1
+rolling_image_t_plus_15  power   kW              1 148.661 148.661                     -148.661                     0.000               1
